@@ -1,0 +1,46 @@
+Baza podataka "OglasiZaPosao"
+-------------------
+CREATE TABLE [dbo].[Korisnik] (
+    [IdKorisnika]       INT           IDENTITY (1, 1) NOT NULL,
+    [NazivKorisnika]    NVARCHAR (50) NOT NULL,
+    [EmailKorisnika]    NVARCHAR (50) NOT NULL,
+    [LozinkaKorisnika]  NVARCHAR (50) NOT NULL,
+    [TipKorisnika]      NVARCHAR (50) NOT NULL,
+    [OpisKorisnika]     NVARCHAR (50) NOT NULL,
+    [VestineKorisnika]  NVARCHAR (50) NOT NULL,
+    [DatumRegistracije] DATETIME      DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdKorisnika] ASC)
+);
+--------------------
+CREATE TABLE [dbo].[Kategorija] (
+    [IdKategorije]    INT           IDENTITY (1, 1) NOT NULL,
+    [NazivKategorije] NVARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdKategorije] ASC)
+);
+--------------------
+CREATE TABLE [dbo].[Oglas] (
+    [IdOglasa]          INT             IDENTITY (1, 1) NOT NULL,
+    [NazivPozicije]     NVARCHAR (50)   NOT NULL,
+    [OpisPosla]         NVARCHAR (500)  NOT NULL,
+    [DatumObjaveOglasa] DATETIME        DEFAULT (getdate()) NOT NULL,
+    [DatumIstekaOglasa] DATETIME        NOT NULL,
+    [Plata]             DECIMAL (18, 2) NOT NULL,
+    [StatusOglasa]      NVARCHAR (50)   NOT NULL,
+    [IdPoslodavca]      INT             NOT NULL,
+    [IdKategorijaPosla] INT             NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdOglasa] ASC),
+    FOREIGN KEY ([IdPoslodavca]) REFERENCES [dbo].[Korisnik] ([IdKorisnika]),
+    FOREIGN KEY ([IdKategorijaPosla]) REFERENCES [dbo].[Kategorija] ([IdKategorije])
+);
+-----------------------------
+CREATE TABLE [dbo].[Prijava] (
+    [IdPrijave]         INT            IDENTITY (1, 1) NOT NULL,
+    [DatumPrijave]      DATETIME       DEFAULT (getdate()) NOT NULL,
+    [StatusPrijave]     NVARCHAR (50)  NOT NULL,
+    [KomentarNaPrijavi] NVARCHAR (250) NOT NULL,
+    [IdKandidata]       INT            NOT NULL,
+    [IdOglasa]          INT            NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdPrijave] ASC),
+    FOREIGN KEY ([IdKandidata]) REFERENCES [dbo].[Korisnik] ([IdKorisnika]),
+    FOREIGN KEY ([IdOglasa]) REFERENCES [dbo].[Oglas] ([IdOglasa])
+);
