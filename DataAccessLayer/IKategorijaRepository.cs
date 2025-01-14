@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public interface IKorisnikRepository : IRepository<Korisnik>
+    public interface IKategorijaRepository : IRepository<Kategorija>
     {
-        Korisnik GetByEmail(string email);
+
     }
 }
-

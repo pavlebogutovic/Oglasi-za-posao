@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Interface
 {
-    public interface IRepository<T>
+    public interface IBusiness<T>
     {
-        List<T> GetAll();
-        bool Add(T item);
-        bool Update(T item);
-        bool Delete(T item);
     }
 }

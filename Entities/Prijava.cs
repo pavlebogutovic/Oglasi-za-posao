@@ -12,7 +12,7 @@ namespace Entities
         public DateTime DatumPrijave { get; set; }
         public string? StatusPrijave { get; set; }
         public string? KomentarNaPrijavi { get; set; }
-        public int IdKorisnika { get; set; }
+        public int IdKandidata { get; set; }
         public int IdOglasa { get; set; }
     }
 }

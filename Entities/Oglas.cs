@@ -15,7 +15,7 @@ namespace Entities
         public DateTime DatumIstekaOglasa { get; set; }
         public decimal Plata { get; set; }
         public string? StatusOglasa { get; set; }
-        public int IdKorisnika { get; set; }
-        public int IdKategorije { get; set; }
+        public int IdPoslodavca { get; set; }
+        public int IdKategorijaPosla { get; set; }
     }
 }
